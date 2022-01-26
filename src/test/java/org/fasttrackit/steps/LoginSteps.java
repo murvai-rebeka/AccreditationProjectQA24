@@ -48,8 +48,9 @@ public class LoginSteps extends BaseSteps {
     public void checkUserIsLoggedout() {
         Assert.assertTrue(loginPage.checkUserIsLoggedout());
     }
+
     @Step
-    public void checkResetPasswordEmailSent(){
+    public void checkResetPasswordEmailSent() {
         Assert.assertTrue(myAccountPage.checkResetPasswordEmailSent());
     }
 
@@ -62,8 +63,9 @@ public class LoginSteps extends BaseSteps {
     public void setResetPasswordEmailField(String email) {
         myAccountPage.setResetPasswordEmailField(email);
     }
+
     @Step
-    public  void clickOnResetPassword(){
+    public void clickOnResetPassword() {
         myAccountPage.clickOnResetPassword();
     }
 

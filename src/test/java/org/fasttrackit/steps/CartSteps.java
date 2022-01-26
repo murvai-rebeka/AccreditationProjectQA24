@@ -43,5 +43,14 @@ public class CartSteps extends BaseSteps {
     public void checkNumberOfCartProducts(Integer count) {
         Assert.assertEquals(productPage.getNumberOfCartProducts(), count);
     }
+    /* @Step
+     public void checkSubtotalPriceIsDisplayedCorrectly(){
+    Assert.assertTrue("The subtotal price is correct!", cartPage.isSubtotalPriceCorrect());*/
 
+
+    @Step
+    public void proceedToCheckout() {
+        cartPage.clickProceedToCheckoutButton();
+
+    }
 }

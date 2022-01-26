@@ -28,5 +28,14 @@ public class CartPage extends BasePage {
         waitFor(restoreItemToShoppingCart);
         clickOn(restoreItemToShoppingCart);
     }
+    /*@FindBy()
+    public boolean isSubtotalPriceCorrect(){
+      return getSubtotalPricesCalculated() == getIntFromPrice(subtotlaText.getText());*/
 
+    @FindBy(css = ".checkout-button")
+    private WebElementFacade proceedToCheckout;
+
+    public void clickProceedToCheckoutButton() {
+        clickOn(proceedToCheckout);
+    }
 }
