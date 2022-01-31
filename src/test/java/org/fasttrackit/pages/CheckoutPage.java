@@ -23,6 +23,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(css = ".woocommerce-notice ")
     private  WebElementFacade checkSuccessfullMsg;
 
+    @FindBy(id = "billing_email")
+    private WebElementFacade setCheckOutEmail;
+
     public void setFirstNameField(String firstName) {
         waitFor(setFirstNameField);
         typeInto(setFirstNameField, firstName);
@@ -61,6 +64,10 @@ public class CheckoutPage extends BasePage {
         System.out.println(checkSuccessfullMsg.getText());
         return checkSuccessfullMsg.isDisplayed() &&
                 checkSuccessfullMsg.getText().equalsIgnoreCase("Thank you. Your order has been received.");
+    }
+    public void setEmailAddress(String emailAddress) {
+        waitFor(setCheckOutEmail);
+        typeInto(setCheckOutEmail, emailAddress);
     }
 
 

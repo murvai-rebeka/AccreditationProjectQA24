@@ -61,7 +61,23 @@ public class CartTest extends BaseTest {
         );
         checkoutSteps.clickOnCheckoutButton();
         checkoutSteps.checkIfOrderSuccessfull();
-
-
     }
+    @Test
+    public void validCheckOutTest2(){
+        searchSteps.searchAndSelectProduct("Belt");
+        cartSteps.addToCart();
+        cartSteps.navigateToCartPage();
+        cartSteps.proceedToCheckout();
+        checkoutSteps.enterCheckoutDetails(EnvConstants.FIRST_NAME,
+                EnvConstants.LAST_NAME,
+                EnvConstants.STR_ADDRESS,
+                EnvConstants.CITY_NAME,
+                EnvConstants.POSTCODE_ZIP,
+                EnvConstants.PHONE_NUMBER
+        );
+        checkoutSteps.setCheckOutEmail(EnvConstants.EMAIL_ADDRESS);
+        checkoutSteps.clickOnCheckoutButton();
+        checkoutSteps.checkIfOrderSuccessfull();
+    }
+
 }

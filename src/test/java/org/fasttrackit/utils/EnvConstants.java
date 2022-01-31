@@ -13,4 +13,5 @@ public class EnvConstants {
     public static final String CITY_NAME = "Oradea";
     public static final String POSTCODE_ZIP = "434156";
     public static final String PHONE_NUMBER = "0745419420";
+    public static final String EMAIL_ADDRESS = "murvai@mailinator.com";
 }

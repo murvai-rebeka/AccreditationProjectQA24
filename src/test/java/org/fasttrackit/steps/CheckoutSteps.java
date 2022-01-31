@@ -20,4 +20,8 @@ public class CheckoutSteps extends BaseSteps {
     public void checkIfOrderSuccessfull(){
         Assert.assertTrue(checkoutPage.checkOrderSuccessfullMsg());
     }
+    @Step
+    public void setCheckOutEmail(String emailAddress){
+        checkoutPage.setEmailAddress(emailAddress);
+    }
 }
