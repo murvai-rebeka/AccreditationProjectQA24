@@ -31,4 +31,6 @@ public class BaseTest {
     protected CartSteps cartSteps;
     @Steps
     protected CheckoutSteps checkoutSteps;
+    @Steps
+    protected ReviewsSteps reviewsSteps;
 }

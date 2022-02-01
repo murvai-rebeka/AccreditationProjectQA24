@@ -53,4 +53,23 @@ public class CartSteps extends BaseSteps {
         cartPage.clickProceedToCheckoutButton();
 
     }
+
+    @Step
+    public void checkIfTheProductAppearInTheCart() {
+        Assert.assertTrue(cartPage.checkIfTheProductAppearInTheCart());
+    }
+
+    @Step
+    public void applyCouponCodeField(String couponCode) {
+        cartPage.setCouponCodeField(couponCode);
+        cartPage.clickOnApplyCouponCode();
+    }
+
+    @Step
+    public void checkIfCouponCodeIsApplied(Integer discount){
+        Assert.assertEquals(discount, cartPage.getDiscount());
+        Integer total = cartPage.getTotal();
+        Integer subtotal = cartPage.getSubTotal()-discount;
+        Assert.assertEquals(total,subtotal);
+    }
 }

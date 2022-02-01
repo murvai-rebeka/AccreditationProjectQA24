@@ -1,7 +1,6 @@
 package org.fasttrackit.features;
 
-import org.fasttrackit.pages.ProductPage;
-import org.fasttrackit.steps.CartSteps;
+
 import org.fasttrackit.utils.EnvConstants;
 import org.junit.Test;
 
@@ -62,8 +61,9 @@ public class CartTest extends BaseTest {
         checkoutSteps.clickOnCheckoutButton();
         checkoutSteps.checkIfOrderSuccessfull();
     }
+
     @Test
-    public void validCheckOutTest2(){
+    public void validCheckOutTest2() {
         searchSteps.searchAndSelectProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
@@ -78,6 +78,52 @@ public class CartTest extends BaseTest {
         checkoutSteps.setCheckOutEmail(EnvConstants.EMAIL_ADDRESS);
         checkoutSteps.clickOnCheckoutButton();
         checkoutSteps.checkIfOrderSuccessfull();
+    }
+
+    @Test
+    public void shipToDifferentAddressTest() {
+        loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
+        searchSteps.searchAndSelectProduct("Belt");
+        cartSteps.addToCart();
+        cartSteps.navigateToCartPage();
+        cartSteps.proceedToCheckout();
+        checkoutSteps.enterCheckoutDetails(EnvConstants.FIRST_NAME,
+                EnvConstants.LAST_NAME,
+                EnvConstants.STR_ADDRESS,
+                EnvConstants.CITY_NAME,
+                EnvConstants.POSTCODE_ZIP,
+                EnvConstants.PHONE_NUMBER
+        );
+        checkoutSteps.clckOnShipToDifferentAddressCheckBox();
+        checkoutSteps.enterCheckoutDetailsForDifferentAddress(EnvConstants.SHIPPING_FIRSTNAME,
+                EnvConstants.SHIPPING_LASTNAME,
+                EnvConstants.SHIPPING_ADDRESS,
+                EnvConstants.SHIPPING_TOWN,
+                EnvConstants.SHIPPING_POSTCODE);
+        checkoutSteps.clickOnCheckoutButton();
+        checkoutSteps.checkIfOrderSuccessfull();
+    }
+
+    @Test
+    public void productLeftInTheCartRemainsAfterLoggOutTest() {
+        loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
+        searchSteps.searchAndSelectProduct("Belt");
+        cartSteps.addToCart();
+        loginSteps.navigateToLoginPage();
+        loginSteps.clickLogout();
+        loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
+        cartSteps.navigateToCartPage();
+        cartSteps.checkIfTheProductAppearInTheCart();
+    }
+
+    @Test
+    public void verifyFixedDiscountCouponTest() {
+        loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
+        searchSteps.searchAndSelectProduct("Belt");
+        cartSteps.addToCart();
+        cartSteps.navigateToCartPage();
+        cartSteps.applyCouponCodeField("HELLO10");
+        cartSteps.checkIfCouponCodeIsApplied(10);
     }
 
 }

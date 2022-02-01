@@ -35,11 +35,21 @@ public class ProductPage extends BasePage {
     public void clickOnViewYourShoppingCartButton() {
         clickOn(shoppingCartButton);
     }
+
     @FindBy(css = ".cart_item")
     private List<WebElementFacade> products;
-    public Integer getNumberOfCartProducts(){
+
+    public Integer getNumberOfCartProducts() {
         waitFor(products.get(0));
         System.out.println(products.size());
         return products.size();
+    }
+
+    @FindBy(css = ".reviews_tab a")
+    private WebElementFacade clickOnReviewsLink;
+
+    public void clickOnReviewsLink() {
+        waitFor(clickOnReviewsLink);
+        clickOn(clickOnReviewsLink);
     }
 }

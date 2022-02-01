@@ -22,9 +22,20 @@ public class CheckoutPage extends BasePage {
     private WebElementFacade checkoutButton;
     @FindBy(css = ".woocommerce-notice ")
     private  WebElementFacade checkSuccessfullMsg;
-
     @FindBy(id = "billing_email")
     private WebElementFacade setCheckOutEmail;
+    @FindBy(id = "ship-to-different-address-checkbox")
+    private WebElementFacade clickDifferentAddressCheckBox;
+    @FindBy(id = "shipping_first_name")
+    private WebElementFacade setShippingFirstNameField;
+    @FindBy(id = "shipping_last_name")
+    private WebElementFacade setShippingLastNameField;
+    @FindBy(id = "shipping_address_1")
+    private WebElementFacade setShippingAddressField;
+    @FindBy(id = "shipping_city")
+    private WebElementFacade setShippingTownField;
+    @FindBy(id = "shipping_postcode")
+    private WebElementFacade setShippingPostcodeField;
 
     public void setFirstNameField(String firstName) {
         waitFor(setFirstNameField);
@@ -68,6 +79,29 @@ public class CheckoutPage extends BasePage {
     public void setEmailAddress(String emailAddress) {
         waitFor(setCheckOutEmail);
         typeInto(setCheckOutEmail, emailAddress);
+    }
+    public void clickDifferentAddressCheckBox(){
+        clickOn(clickDifferentAddressCheckBox);
+    }
+    public void setShippingFirstNameField(String shippingFirstName){
+        waitFor(setShippingFirstNameField);
+        typeInto(setShippingFirstNameField, shippingFirstName );
+    }
+    public void setShippingLastNameField(String shippingLastName){
+        waitFor(setShippingLastNameField);
+        typeInto(setShippingLastNameField, shippingLastName);
+    }
+    public void setShippingAddressField(String shippingAddress){
+        waitFor(setShippingAddressField);
+        typeInto(setShippingAddressField, shippingAddress);
+    }
+    public void setShippingTownField(String shippingTown){
+        waitFor(setShippingTownField);
+        typeInto(setShippingTownField, shippingTown);
+    }
+    public void setShippingPostcodeField(String shippingPostcode){
+        waitFor(setShippingPostcodeField);
+        typeInto(setShippingPostcodeField, shippingPostcode);
     }
 
 
