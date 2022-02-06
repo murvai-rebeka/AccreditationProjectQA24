@@ -16,9 +16,9 @@ public class RegisterTest extends BaseTest{
     @Test
     public void registerWithInvalidCredentialsTest(){
         registerSteps.navigateToRegisterPage();
-        registerSteps.enterCredentials("murvaimailinator.com", EnvConstants.USER_PASS);
+        registerSteps.enterCredentials("", EnvConstants.USER_PASS);
         registerSteps.clickRegister();
-     /*   registerSteps.checkUserIsRegistred();*/
+        loginSteps.checkInvalidLoginMessageDisplayed();
     }
 
 }

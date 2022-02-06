@@ -33,4 +33,10 @@ public class BaseTest {
     protected CheckoutSteps checkoutSteps;
     @Steps
     protected ReviewsSteps reviewsSteps;
+    @Steps
+    protected SearchResultSteps searchResultSteps;
+    @Steps
+    protected BlogPageSteps blogPageSteps;
+    @Steps
+    protected HomePageSteps homePageSteps;
 }

@@ -55,7 +55,7 @@ public class LoginSteps extends BaseSteps {
     }
 
     @Step
-    public void navigateToResetPassword() {
+    public void navigateToResetPasswordPage() {
         loginPage.navigateToResetPassword();
     }
 

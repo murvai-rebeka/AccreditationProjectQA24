@@ -9,25 +9,28 @@ public class HomePage extends BasePage {
     private WebElementFacade accountLink;
 
     public void clickAccountLink() {
+
         clickOn(accountLink);
     }
 
     @FindBy(css = ".search-btn")
     private WebElementFacade showSearchButton;
 
+    @FindBy(css = ".search-field")
+    private WebElementFacade searchInput;
+
     public void setSearchField(String keyword) {
         clickOn(showSearchButton);
         typeInto(searchInput, keyword);
     }
 
-    @FindBy(css = ".search-field")
-    private WebElementFacade searchInput;
     @FindBy(css = ".search-submit")
     private WebElementFacade searchButton;
 
     public void clickSearchButoon() {
         clickOn(searchButton);
     }
+
 
 }
 

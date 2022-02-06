@@ -15,7 +15,7 @@ public class CartSteps extends BaseSteps {
     }
 
     @Step
-    public void checkIfItsXAppear() {
+    public void checkIfTheProductIsInTheCart() {
         Assert.assertTrue(productPage.checkIfItsXAppear());
     }
 
@@ -30,7 +30,7 @@ public class CartSteps extends BaseSteps {
     }
 
     @Step
-    public void checkIfItsSuccessfullyRemovedFromCart() {
+    public void checkIfSuccessfullyRemovedFromCart() {
         Assert.assertTrue(cartPage.checkIfItsSuccessfullyRemovedFromCart());
     }
 
@@ -43,10 +43,12 @@ public class CartSteps extends BaseSteps {
     public void checkNumberOfCartProducts(Integer count) {
         Assert.assertEquals(productPage.getNumberOfCartProducts(), count);
     }
-    /* @Step
-     public void checkSubtotalPriceIsDisplayedCorrectly(){
-    Assert.assertTrue("The subtotal price is correct!", cartPage.isSubtotalPriceCorrect());*/
-
+     @Step
+     public void checkSubtotalPriceIsDisplayedCorrectly() {
+         Integer total = cartPage.getSubTotal();
+         Integer calculatedPrice = cartPage.calculateProductsPrice();
+         Assert.assertEquals(total, calculatedPrice);
+     }
 
     @Step
     public void proceedToCheckout() {
@@ -60,7 +62,7 @@ public class CartSteps extends BaseSteps {
     }
 
     @Step
-    public void applyCouponCodeField(String couponCode) {
+    public void applyCouponCode(String couponCode) {
         cartPage.setCouponCodeField(couponCode);
         cartPage.clickOnApplyCouponCode();
     }

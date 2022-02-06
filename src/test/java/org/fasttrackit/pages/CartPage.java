@@ -2,6 +2,7 @@ package org.fasttrackit.pages;
 
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
 
 import java.time.Duration;
 import java.util.List;
@@ -12,6 +13,7 @@ public class CartPage extends BasePage {
     private WebElementFacade removeProductFromCart;
 
     public void clickRemoveProductFromCart() {
+
         clickOn(removeProductFromCart);
     }
 
@@ -32,9 +34,20 @@ public class CartPage extends BasePage {
         waitFor(restoreItemToShoppingCart);
         clickOn(restoreItemToShoppingCart);
     }
-    /*@FindBy()
-    public boolean isSubtotalPriceCorrect(){
-      return getSubtotalPricesCalculated() == getIntFromPrice(subtotlaText.getText());*/
+    @FindBy(css = ".cart-subtotal")
+    private WebElementFacade subtotalText;
+
+
+
+    public Integer calculateProductsPrice() {
+        Integer total = 0;
+        for(WebElementFacade p:products){
+           String price =  p.findElement(By.cssSelector(".amount")).getText();
+           if(price != null)
+               total = total + getPrice(price);
+        }
+        return total;
+    }
 
     @FindBy(css = ".checkout-button")
     private WebElementFacade proceedToCheckout;
@@ -63,27 +76,32 @@ public class CartPage extends BasePage {
     private WebElementFacade couponCodeButton;
 
     public void clickOnApplyCouponCode() {
+
         clickOn(couponCodeButton);
     }
 
     @FindBy(css = ".cart-discount .amount")
     private WebElementFacade discountLabel;
-    public Integer getDiscount(){
-        String discount = discountLabel.getText().replace("lei", "").replace(",00", "").trim();
-        return Integer.valueOf(discount);
+
+    public Integer getDiscount() {
+        return getPrice(discountLabel.getText());
     }
 
     @FindBy(css = ".order-total .amount")
     private WebElementFacade totalLabel;
-    public Integer getTotal(){
-        String total = totalLabel.getText().replace("lei", "").replace(",00", "").trim();
-        return Integer.valueOf(total);
+
+    public Integer getTotal() {
+        return getPrice(totalLabel.getText());
     }
 
     @FindBy(css = ".cart-subtotal .amount")
     private WebElementFacade subTotalLabel;
-    public Integer getSubTotal(){
-        String subTotal = subTotalLabel.getText().replace("lei", "").replace(",00", "").trim();
-        return Integer.valueOf(subTotal);
+
+    public Integer getSubTotal() {
+        return getPrice(subTotalLabel.getText());
+    }
+
+    private  Integer getPrice(String text){
+        return Integer.valueOf(text.replace("lei", "").replace(",00", "").trim());
     }
 }

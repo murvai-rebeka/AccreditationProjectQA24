@@ -14,16 +14,18 @@ public class BaseSteps extends ScenarioSteps {
     protected CartPage cartPage;
     protected CheckoutPage checkoutPage;
     protected ReviewsPage reviewsPage;
+    protected BasePage basePage;
+    protected BlogPage blogPage;
 
 
-  /*  @Step
-    public void navigateToAdminHomePage(){
-        getDriver().get(EnvConstants.ADMIN_BASE_URL);
-    }
-*/
     @Step
     public void navigateToHomePage(){
         getDriver().get(EnvConstants.BASE_URL);
+    }
+
+    @Step
+    public void navigateToShopPage(){
+        getDriver().get(EnvConstants.SHOP_URL);
     }
 
 }

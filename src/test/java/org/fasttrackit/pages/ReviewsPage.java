@@ -30,6 +30,7 @@ public class ReviewsPage extends BasePage{
 
     @FindBy(css = ".comment_container .description p")
     private List<WebElementFacade> reviews;
+
     public boolean checkIfReviewIsAdded(String review){
         for(WebElementFacade r:reviews){
             if(r.getText().equalsIgnoreCase(review))
@@ -52,5 +53,7 @@ public class ReviewsPage extends BasePage{
         waitFor(emailField);
         typeInto(emailField, email);
     }
+
+
 
 }

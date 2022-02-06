@@ -26,10 +26,11 @@ public class LoginTest extends BaseTest {
         loginSteps.clickLogout();
         loginSteps.checkUserIsLoggedout();
     }
+
     @Test
-    public void resetPasswortTest(){
+    public void resetPasswordTest() {
         loginSteps.navigateToLoginPage();
-        loginSteps.navigateToResetPassword();
+        loginSteps.navigateToResetPasswordPage();
         loginSteps.setResetPasswordEmailField(EnvConstants.USER_EMAIL);
         loginSteps.clickOnResetPassword();
         loginSteps.checkResetPasswordEmailSent();

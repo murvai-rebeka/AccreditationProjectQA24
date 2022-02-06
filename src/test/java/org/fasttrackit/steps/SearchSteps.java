@@ -9,13 +9,18 @@ public class SearchSteps extends BaseSteps{
     public void executeSearch(String keyword){
         homePage.setSearchField(keyword);
         homePage.clickSearchButoon();
+
+    }
+    @Step
+    public void existProductsAfterSearch(){
         Assert.assertTrue(searchResultPage.existProductsAfterSearch());
     }
     @Step
-    public void searchAndSelectProduct(String productName){
+    public void searchAndSelectFirstProduct(String productName){
         homePage.setSearchField(productName);
         homePage.clickSearchButoon();
         searchResultPage.clickOnProductTitle();
     }
+
 
 }

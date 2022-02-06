@@ -17,7 +17,7 @@ public class CheckoutSteps extends BaseSteps {
     public void clickOnCheckoutButton(){
         checkoutPage.clickCheckoutButton();
     }
-    public void checkIfOrderSuccessfull(){
+    public void checkIfTheOrderIsSuccessful(){
         Assert.assertTrue(checkoutPage.checkOrderSuccessfullMsg());
     }
     @Step

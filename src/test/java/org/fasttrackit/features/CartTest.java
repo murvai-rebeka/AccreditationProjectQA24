@@ -7,47 +7,46 @@ import org.junit.Test;
 public class CartTest extends BaseTest {
     @Test
     public void addToCartTest() {
-        searchSteps.searchAndSelectProduct("Sunglasses");
+        searchSteps.searchAndSelectFirstProduct("Sunglasses");
         cartSteps.addToCart();
         cartSteps.checkIfItsSuccessfullyAddedToTheCart();
-        cartSteps.checkIfItsXAppear();
+        cartSteps.checkIfTheProductIsInTheCart();
     }
 
     @Test
-    public void removeProductFromTheCart() {
-        searchSteps.searchAndSelectProduct("Sunglasses");
+    public void removeProductFromTheCartTest() {
+        searchSteps.searchAndSelectFirstProduct("Sunglasses");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
         cartSteps.removeProductFromCart();
-        cartSteps.checkIfItsSuccessfullyRemovedFromCart();
+        cartSteps.checkIfSuccessfullyRemovedFromCart();
         cartSteps.checkNumberOfCartProducts(0);
     }
 
     @Test
-    public void checkIfItsUndoButtonItsWorking() {
-        searchSteps.searchAndSelectProduct("Belt");
+    public void checkIfUndoButtonItsWorkingTest() {
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
         cartSteps.removeProductFromCart();
-        //  cartSteps.checkNumberOfCartProducts(0);
         cartSteps.restoreItemToShoppingCart();
         cartSteps.checkNumberOfCartProducts(1);
     }
 
     @Test
     public void checkCartTotalSummaryTest() {
-        // loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
-        searchSteps.searchAndSelectProduct("Beanie");
+        searchSteps.searchAndSelectFirstProduct("Beanie");
+        cartSteps.addToCart();
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
-        // cartSteps.checkSubtotalPriceIsDisplayedCorrectly();
-
+        cartSteps.checkSubtotalPriceIsDisplayedCorrectly();
     }
 
     @Test
-    public void validCheckOutTest() {
+    public void validCheckOutWhileAreLoggedInTest() {
         loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
-        searchSteps.searchAndSelectProduct("Belt");
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
         cartSteps.proceedToCheckout();
@@ -59,12 +58,12 @@ public class CartTest extends BaseTest {
                 EnvConstants.PHONE_NUMBER
         );
         checkoutSteps.clickOnCheckoutButton();
-        checkoutSteps.checkIfOrderSuccessfull();
+        checkoutSteps.checkIfTheOrderIsSuccessful();
     }
 
     @Test
-    public void validCheckOutTest2() {
-        searchSteps.searchAndSelectProduct("Belt");
+    public void validCheckOutWhileAreLoggedOutTest() {
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
         cartSteps.proceedToCheckout();
@@ -77,13 +76,13 @@ public class CartTest extends BaseTest {
         );
         checkoutSteps.setCheckOutEmail(EnvConstants.EMAIL_ADDRESS);
         checkoutSteps.clickOnCheckoutButton();
-        checkoutSteps.checkIfOrderSuccessfull();
+        checkoutSteps.checkIfTheOrderIsSuccessful();
     }
 
     @Test
     public void shipToDifferentAddressTest() {
         loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
-        searchSteps.searchAndSelectProduct("Belt");
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
         cartSteps.proceedToCheckout();
@@ -101,13 +100,13 @@ public class CartTest extends BaseTest {
                 EnvConstants.SHIPPING_TOWN,
                 EnvConstants.SHIPPING_POSTCODE);
         checkoutSteps.clickOnCheckoutButton();
-        checkoutSteps.checkIfOrderSuccessfull();
+        checkoutSteps.checkIfTheOrderIsSuccessful();
     }
 
     @Test
-    public void productLeftInTheCartRemainsAfterLoggOutTest() {
+    public void productLeftInTheCartRemainsAfterLogOutTest() {
         loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
-        searchSteps.searchAndSelectProduct("Belt");
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         loginSteps.navigateToLoginPage();
         loginSteps.clickLogout();
@@ -119,10 +118,10 @@ public class CartTest extends BaseTest {
     @Test
     public void verifyFixedDiscountCouponTest() {
         loginSteps.doLogin(EnvConstants.USER_EMAIL, EnvConstants.USER_PASS);
-        searchSteps.searchAndSelectProduct("Belt");
+        searchSteps.searchAndSelectFirstProduct("Belt");
         cartSteps.addToCart();
         cartSteps.navigateToCartPage();
-        cartSteps.applyCouponCodeField("HELLO10");
+        cartSteps.applyCouponCode("HELLO10");
         cartSteps.checkIfCouponCodeIsApplied(10);
     }
 

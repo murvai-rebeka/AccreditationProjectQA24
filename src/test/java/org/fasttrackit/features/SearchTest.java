@@ -6,5 +6,6 @@ public class SearchTest extends BaseTest {
     @Test
     public void searchByProductTitleTest() {
         searchSteps.executeSearch("abc");
+        searchSteps.existProductsAfterSearch();
     }
 }
