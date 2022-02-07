@@ -40,9 +40,9 @@ public class ProductPage extends BasePage {
     private List<WebElementFacade> products;
 
     public Integer getNumberOfCartProducts() {
-        waitFor(products.get(0));
-        System.out.println(products.size());
-        return products.size();
+        if(products == null)
+            return 0;
+        return  products.size();
     }
 
     @FindBy(css = ".reviews_tab a")
